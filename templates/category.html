@@ -3,13 +3,13 @@
     <main class="container">
         <h1 class="text-center my-5">YES ORIGINAL</h1>
         <div class="row row-cols-1 row-cols-md-2 g-4">
-        {% for products in categories %}
+        {% for products in products_list %}
           <div class="col">
             <div class="card">
-              <img src="{{url_for('static',filename='img/'+products[2])}}" class="card-img-top" alt="...">
+              <img src="{{url_for('static',filename='img/'+products[3])}}" class="card-img-top" alt="...">
               <div class="card-body">
                 
-                <a class="btn btn-primary stretched-link" href="{{ url_for('category_page', category_id=products[0])}}" role="button">Читати</a>
+                <a class="btn btn-primary stretched-link" href="{{ url_for('products_page', products_id=products[0])}}" role="button">Читати</a>
             </div>
           </div>
         </div>

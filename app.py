@@ -19,8 +19,7 @@ def get_categories():
 
 @app.route("/")  # Вказуємо url-адресу для виклику функції
 def index():
-    products = db.get_all_products()
-    return render_template("index.html", products=products)
+    return render_template("index.html")
 
 
 @app.route("/products/<int:products_id>")  # Вказуємо url-адресу для виклику функції
@@ -32,8 +31,8 @@ def products_page(products_id):
 
 @app.route("/categories/<int:category_id>")  # Вказуємо url-адресу для виклику функції
 def category_page(category_id):
-    products = db.get_products(category_id)
-    return render_template("index.html", products=products) 
+    products = db.get_categories_products(category_id)
+    return render_template("category.html", products_list=products) 
 
 @app.route("/products/new", methods=["GET", "POST"])
 def new_products():

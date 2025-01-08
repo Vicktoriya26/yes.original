@@ -41,7 +41,7 @@ class DatabaseManager:
     
     def get_categories_products(self, category_id):
         self.open()
-        self.cursor.execute("""SELECT * FROM products WHERE category_id?""", [category_id])
+        self.cursor.execute("""SELECT * FROM products WHERE category_id=?""", [category_id])
         data = self.cursor.fetchall()
         self.close()
         return data

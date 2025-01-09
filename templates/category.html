@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content%}
-    <main class="container">
+    <main class="container pb-5">
         <h1 class="text-center my-5">YES ORIGINAL</h1>
         <div class="row row-cols-1 row-cols-md-2 g-4">
         {% for products in products_list %}
@@ -8,8 +8,10 @@
             <div class="card">
               <img src="{{url_for('static',filename='img/'+products[3])}}" class="card-img-top" alt="...">
               <div class="card-body">
+                <h5 class="card-title">{{products[1]}}</h5>
+                <h4 style="color:rgb(2, 109, 2)">{{products[5]}} грн </h4>
                 
-                <a class="btn btn-primary stretched-link" href="{{ url_for('products_page', products_id=products[0])}}" role="button">Читати</a>
+                <a class="btn btn-outline-dark stretched-link" href="{{ url_for('products_page', products_id=products[0])}}" role="button">Купити</a>
             </div>
           </div>
         </div>

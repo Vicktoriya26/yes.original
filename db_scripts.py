@@ -46,17 +46,18 @@ class DatabaseManager:
         self.close()
         return data
     
-    def add_products(self, title, content, image, user_id, category_id):
+    def add_order(self, product_id, quantity, fullname, phone, city, adress, post_service, comment):
         self.open()
-        self.cursor.execute("""INSERT INTO products(title, content, image, user_id, category_id)
-                            VALUES(?,?,?,?,?)""", [title, content, image, user_id, int(category_id)])       
-        data = self.cursor.fetchall()
+        self.cursor.execute("""INSERT INTO orders(product_id, quantity, fullname, phone, city, adress, post_service, comment)
+                            VALUES(?,?,?,?,?,?,?,?)""", [product_id, quantity, fullname, phone, city, adress, post_service, comment])       
+        self.conn.commit()
         self.close()
-        return
+
     
     def search_products(self, query):
         self.open()
         query = '%' + query + '%'
-        self.cursor.execute("""SELECT * FROM products WHERE (title LIKE ? OR content LIKE ?)""", [query, query])
+        self.cursor.execute("""SELECT * FROM products WHERE (title LIKE ? OR description LIKE ?)""", [query, query])
         data = self.cursor.fetchall()
         self.close()
+        return data

@@ -8,16 +8,77 @@
 
 {% block content %}
     <main class="container">
-        <h1 class="m-5">{{products[1]}}</h1>
-            <small>Опубліковано: {{products[4]}}</small>
-            <div>
-                <img scr="{{ url_for('static', filename='img/'+products[3]) }}" class="img-fluid my-3"alt="...">
+
+
+        <div class="row">
+            <div class="col">
+                <img src="{{ url_for('static', filename='img/'+products[3]) }}" class="img-fluid my-3"alt="...">
             </div>
-            {% for p in products.split('\n') %}
+            <div class="col">
+                <h1 class="m-5">{{products[1]}}</h1>
+                {% for p in products[2].split('\n') %}
                 <p>{{p}}</p>
             {% endfor %}
-            
-        
-        
+            {% include 'alerts.html' %}
+            <h4 style="color:rgb(2, 109, 2)">{{products[5]}} грн </h4>
+                <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-dark" role="button">Купити</button>
+            </div>
+            </div>
+        </div>
+
+
     </main>
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Оформити замовлення</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="" method="post" enctype="multipart/form-data">
+        <div class="modal-body">
+            
+                <div class="mb-3">
+                    <label for="productsTitle" class="form-label">ПІБ</label>
+                    <input required name="fullname" class="form-control" id="productsTitle" placeholder="Введіть ім'я та призвіще">
+                </div>
+                <div class="mb-3">
+                    <label for="productsTitle" class="form-label">Номер телефону</label>
+                    <input required name="phone" class="form-control" id="productsTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="productsTitle" class="form-label">Місто</label>
+                    <input required name="city" class="form-control" id="productsTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="productsTitle" class="form-label">Адреса</label>
+                    <input required name="adress" class="form-control" id="productsTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="productsTitle" class="form-label">Поштове відділення</label>
+                    <input required name="post_service" class="form-control" id="productsTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="productsTitle" class="form-label">Кількість</label>
+                    <input type="number" value="1" min="1" max="15" required name="quantity" class="form-control" id="productsTitle">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Коментар</label>
+                    <textarea  name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                
+                
+            
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+          <button type="submit" class="btn btn-dark">Підтвердити замовлення</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
   {% endblock content %}

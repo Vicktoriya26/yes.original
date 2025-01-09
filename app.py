@@ -22,9 +22,23 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/products/<int:products_id>")  # Вказуємо url-адресу для виклику функції
+@app.route("/products/<int:products_id>", methods=["GET", "POST"])  # Вказуємо url-адресу для виклику функції
 def products_page(products_id):
     products = db.get_products(products_id)
+    if request.method == 'POST':
+        db.add_order(
+            products_id, 
+            request.form['quantity'],
+            request.form['fullname'],
+            request.form['phone'],
+            request.form['city'],
+            request.form['adress'],
+            request.form['post_service'],
+            request.form['comment'],
+            
+
+        )
+        flash("Замовлення прийнято", "alert-success")
     return render_template("products_page.html", products=products) 
 
 
@@ -55,7 +69,7 @@ def search():
         query = request.args.get("query")
         products = db.search_products(query)
 
-    return render_template("index.html", products=products)
+    return render_template("category.html", products_list=products)
 
 
 
